@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<!--
+  This is an SPA aimed to visualize how some of the Super Nintendo's functions worked.
+  Author: Anthony Weed <awweed2@gmail.com>
+  Tools Used: Vim, Coolors.co
+-->
+
+<html>
+  <head>
+    <title>Snes Functions in Javascript!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+    <meta charset="utf-8"/>
+  
+    <style>
+      #canvas {
+        border: 1px dotted black;
+      }
+    </style>
+
+  </head>
+
+  <body>
+    <h2>SNES Functionalities<small>... using JavaScript</small></h2>
+    <canvas id="canvas"></canvas>
+    <form>
+      <!-- to do: genereate options automatically -->
+      <select id="palette">
+        <option value="p1">Palette 1</option>
+        <option value="p2">Palette 2</option>
+        <option value="p3">Palette 3</option>
+        <option value="p4">Palette 4</option>
+        <option value="p5">Palette 5</option>
+      </select>
+
+      <!-- to do: implement direct color mode -->
+    </form>
+  </body>
+
+  <script>
+    const canvas = document.getElementById('canvas')
+    const context = canvas.getContext('2d')
+    const paletteSelect = document.getElementById('palette')
+ 
+    const resolution = 50
+ 
+    // lets resize our canvas to something usable
+    canvas.width = 800
+    canvas.height = 600
+
+    // lets define some images
+    const images = [
+      [
+        [0,1,0],
+        [1,1,1],
+        [0,1,0]
+      ],
+      [
+        [1,0,1],
+        [0,1,0],
+        [1,0,1]
+      ],
+      [
+        [2,2,2],
+        [1,1,1],
+        [0,0,0]
+      ]
+    ]
+    
+    // lets define some palettes
+    // shout out to coolors.co - these palettes were generated with it!
+
+    const palettes = [
+      [
+        '#087E8B',
+        '#FF5A5F',
+        '#3C3C3C',
+        '#F5F5F5',
+        '#C1839F'
+      ],
+      [
+        '#424243',
+        '#244F26',
+        '#256D1B',
+        '#149911',
+        '#1EFC1E'
+      ],
+      [
+        '#1F2041',
+        '#4B3F72',
+        '#FFC857',
+        '#119DA4',
+        '#19647E'
+      ]
+    ]
+
+    // our screen object
+    let screen = {
+      width: 640,
+      height: 480,
+      mode: 1, //use 1 for indirect color, direct color will be implemented later
+      
+      switchMode() {
+        if(mode==1){ mode==0 }
+        if(mode==0){ mode==1 }
+      },
+
+      draw(image, colorPalette){
+      
+          for(let x=0; x<image.length; x++){
+            for(let y=0; y<image.length; y++){ // note: using y<image.length restricts this to only drawing images with the same width and height
+              
+              // check the color within our colorPalette and draw it if it's a match
+              for(let color in colorPalette){
+                if (image[x][y] == color) {
+                  context.fillStyle = colorPalette[image[x][y]]
+                  context.fillRect(
+                    x * resolution,
+                    y * resolution,
+                    resolution,
+                    resolution
+                  )
+
+                  // to do: add text to box
+                }
+              }
+
+            }
+          }
+      }
+
+    }
+
+
+  screen.draw(images[0], palettes[1])
+  </script>
+
+</html>
