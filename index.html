@@ -15,8 +15,14 @@
 
   <body>
     <h2>SNES Palette Switching using JavaScript</h2>
-    <canvas id="canvas" class="fl-left"></canvas>
-    <div class="fl-right" style="width: 45%; margin-right: 25px;">
+    <div class="fl-right">
+      <canvas id="canvas"></canvas>
+      <h5>Indirect Color Representation of Image</h5>
+      <p id="bitimage">
+
+      </p>
+    </div>
+    <div class="fl-left" style="width: 45%; margin-right: 25px;">
       <h3>Indirect Color</h3>
       <p>
         Indirect color means that the representation of a color is stored in an image's memory, and not the color value itself. If the color value itself was stored in memory, that would be <em>direct color.</em> Using indirect color gives the SNES capabilities to switch palettes fairly easily.

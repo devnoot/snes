@@ -2,11 +2,12 @@ const canvas = document.getElementById('canvas')
 const context = canvas.getContext('2d')
 const paletteSelect = document.getElementById('palette')
 const imageSelect = document.getElementById('image')
-const resolution = 25
+const resolution = 15
+const bitImage = document.getElementById('bitimage')
 
 // lets resize our canvas to something usable
-canvas.width = 512
-canvas.height = 440
+canvas.width = 320
+canvas.height = 240
 
 // lets define some images
 
@@ -130,6 +131,15 @@ let screen = {
     if(mode==1){ mode==0 }
     if(mode==0){ mode==1 }
   },
+  drawBitImage(image){
+    let addMe = ''
+
+    for(let row=0; row < image.length; row++){
+      addMe += image[row] + '<br>'
+      console.log(image[row])
+    }
+    bitImage.innerHTML = '<pre>' + addMe + '</pre>'
+  },
 
   draw(image, colorPalette){
       // reset canvas
@@ -190,6 +200,8 @@ screen.draw(
   images[imageSelect.options[imageSelect.selectedIndex].value],
   palettes[paletteSelect.options[paletteSelect.selectedIndex].value]
 )
+screen.drawBitImage(images[imageSelect.options[imageSelect.selectedIndex].value])
 })
 
 screen.draw(images[1], palettes[1])
+screen.drawBitImage(images[1])
