@@ -10,193 +10,50 @@
     <title>Snes Functions in Javascript!</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
     <meta charset="utf-8"/>
-  
-    <style>
-      #canvas {
-        border: 1px dotted black;
-      }
-    </style>
-
+    <link rel="stylesheet" href="css/app.css" />
   </head>
 
   <body>
-    <h2>SNES Functionalities<br><em><small>... using JavaScript</small></em></h2>
-    <canvas id="canvas"></canvas>
-    <form>
-      <!-- to do: genereate options automatically -->
+    <h2>SNES Functionalities using JavaScript</h2>
+    <canvas id="canvas" class="fl-left"></canvas>
+    <div class="fl-right" style="width: 45%; margin-right: 25px;">
+      <h3>Indirect Color</h3>
       <p>
-        <label>Select a Color Palette</label>
-        <br>
-        <select id="palette">
-          <option value="1">Palette 1</option>
-          <option value="2">Palette 2</option>
-          <option value="3">Palette 3</option>
-          <option value="4">Palette 4</option>
-          <option value="5">Palette 5</option>
-        </select>
+        Indirect color means that the representation of a color is stored in an image's memory, and not the color value itself. If the color value itself was stored in memory, that would be <em>direct color.</em> Using indirect color gives the SNES capabilities to switch palettes fairly easily.
       </p>
+      <form>
+        <!-- to do: genereate options automatically -->
+        <p>
+          <label>Select a Color Palette</label>
+          <br>
+          <select id="palette">
+            <option value="1">Palette 1</option>
+            <option value="2">Palette 2</option>
+            <option value="3">Palette 3</option>
+            <option value="4">Palette 4</option>
+            <option value="5">Palette 5</option>
+          </select>
+        </p>
 
-      <p>
-        <label>Select an Image</label>
-        <br>
-        <select id="image">
-          <option value="1">Image 1</option>
-          <option value="2">Image 2</option>
-          <option value="3">Image 3</option>
-          <option value="4">Image 4</option>
-          <option value="5">Image 5</option>
-        </select>
-      </p>
+        <p>
+          <label>Select an Image</label>
+          <br>
+          <select id="image">
+            <option value="1">Cheep Cheep</option>
+            <option value="2">Mushroom</option>
+          </select>
+        </p>
 
-      <!-- to do: implement direct color mode -->
-    </form>
+        <!-- to do: implement direct color mode -->
+      </form>
+
+    </div>
+
+    <div class="clearfix">
+
+    </div>
   </body>
 
-  <script>
-    const canvas = document.getElementById('canvas')
-    const context = canvas.getContext('2d')
-    const paletteSelect = document.getElementById('palette')
-    const imageSelect = document.getElementById('image')
-    const resolution = 50
- 
-    // lets resize our canvas to something usable
-    canvas.width = 640
-    canvas.height = 480
-
-    // lets define some images
-
-    // indirect color uses a representation of the color within memory
-    // here, we will represent numbers 0-4 with their respective colors
-    // within the selected color palette
-
-    const images = [
-      [
-        // image0 will be blank for ease of use
-      ],
-      [
-        [0,1,0],
-        [1,1,1],
-        [0,1,0]
-      ],
-      [
-        [1,0,1],
-        [0,1,0],
-        [1,0,1]
-      ],
-      [
-        [2,2,2],
-        [1,1,1],
-        [0,0,0]
-      ],
-      [
-        [3,4,1],
-        [2,3,4],
-        [1,2,3]
-      ],
-      [
-        [4,3,2],
-        [4,3,2],
-        [4,3,2]
-      ]
-    ]
-    
-    // lets define some palettes
-    // shout out to coolors.co - these palettes were generated with it!
-
-    const palettes = [
-      [ 
-        //palette0 will be blank for ease of use 
-      ],
-      [
-        '#087E8B',
-        '#FF5A5F',
-        '#3C3C3C',
-        '#F5F5F5',
-        '#C1839F'
-      ],
-      [
-        '#424243',
-        '#244F26',
-        '#256D1B',
-        '#149911',
-        '#1EFC1E'
-      ],
-      [
-        '#1F2041',
-        '#4B3F72',
-        '#FFC857',
-        '#119DA4',
-        '#19647E'
-      ],
-      [
-        '#B7AD99',
-        '#FF4365',
-        '#030301',
-        '#00D9C0',
-        '#FFFFF3'
-      ],
-      [
-        '#F7F052',
-        '#F28123',
-        '#D34E24',
-        '#563F1B',
-        '#38726C'
-      ]
-    ]
-
-    // our screen object
-    let screen = {
-      width: 640,
-      height: 480,
-      mode: 1, //use 1 for indirect color, direct color will be implemented later
-      
-      switchMode() {
-        if(mode==1){ mode==0 }
-        if(mode==0){ mode==1 }
-      },
-
-      draw(image, colorPalette){
-      
-          for(let x=0; x<image.length; x++){
-            for(let y=0; y<image.length; y++){ // note: using y<image.length restricts this to only drawing images with the same width and height
-              
-              // check the color within our colorPalette and draw it if it's a match
-              for(let color in colorPalette){
-                if (image[x][y] == color) {
-                  context.fillStyle = colorPalette[image[x][y]]
-                  context.fillRect(
-                    x * resolution,
-                    y * resolution,
-                    resolution,
-                    resolution
-                  )
-
-                  // to do: add text to box
-                }
-              }
-
-            }
-          }
-      }
-
-    }
-  
-  // to do: rewrite this as one function
-  paletteSelect.addEventListener("change", function () {
-    screen.draw(
-      images[imageSelect.options[imageSelect.selectedIndex].value],
-      palettes[paletteSelect.options[paletteSelect.selectedIndex].value]
-    )
-  })
-  
-  imageSelect.addEventListener("change", function () {
-    screen.draw(
-      images[imageSelect.options[imageSelect.selectedIndex].value],
-      palettes[paletteSelect.options[paletteSelect.selectedIndex].value]
-    )
-  })
-
-  screen.draw(images[0], palettes[1])
-  </script>
+  <script src="js/app.js"></script>
 
 </html>
