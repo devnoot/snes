@@ -128,8 +128,8 @@ let screen = {
   mode: 1, //use 1 for indirect color, direct color will be implemented later
 
   switchMode() {
-    if(mode==1){ mode==0 }
-    if(mode==0){ mode==1 }
+    if(mode==1){ mode=0 }
+    if(mode==0){ mode=1 }
   },
   drawBitImage(image){
     let addMe = ''
@@ -162,27 +162,9 @@ let screen = {
 
             }
           }
-          console.log(`(${row},${col}) is ${image[row][col]}`)
+          // console.log(`(${row},${col}) is ${image[row][col]}`)
         }
       }
-      // for(let i=0, cols = image.length; i<cols; i++){
-      //   for(let j=0, rows = image[i].length; j<rows; j++){ // note: using y<image.length restricts this to only drawing images with the same width and height
-      //
-      //     // check the color within our colorPalette and draw it if it's a match
-      //     for(let color in colorPalette){
-      //       if (image[i][j] == color) {
-      //         context.fillStyle = colorPalette[image[i][j]]
-      //         context.fillRect(
-      //           i * resolution,
-      //           j * resolution,
-      //           resolution,
-      //           resolution
-      //         )
-      //       }
-      //     }
-      //
-      //   }
-      // }
   }
 
 }
