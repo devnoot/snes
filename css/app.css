@@ -20,9 +20,18 @@ label {
   font-size: 1.15em;
   line-height: 1.15em;
 }
-#bitimage{
+#bitimage {
   background: black;
   color: white;
   padding: 5px;
   width: auto;
+}
+.container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 18px;
+  background: white;
+}
+body{
+  background: gray;
 }

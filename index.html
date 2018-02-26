@@ -14,50 +14,52 @@
   </head>
 
   <body>
-    <h2>SNES Palette Switching using JavaScript</h2>
-    <div class="fl-right">
-      <canvas id="canvas"></canvas>
-      <h5>Indirect Color Representation of Image</h5>
-      <p id="bitimage">
+    <div class="container">
+      <h2>SNES Palette Switching using JavaScript</h2>
+      <div class="fl-right">
+        <canvas id="canvas"></canvas>
+        <h5>Indirect Color Representation of Image</h5>
+        <p id="bitimage">
 
-      </p>
-    </div>
-    <div class="fl-left" style="width: 45%; margin-right: 25px;">
-      <h3>Indirect Color</h3>
-      <p>
-        Indirect color means that the representation of a color is stored in an image's memory, and not the color value itself. If the color value itself was stored in memory, that would be <em>direct color.</em> Using indirect color gives the SNES capabilities to switch palettes fairly easily.
-      </p>
-      <form>
-        <!-- to do: genereate options automatically -->
-        <p>
-          <label>Select a Color Palette</label>
-          <br>
-          <select id="palette">
-            <option value="1">Palette 1</option>
-            <option value="2">Palette 2</option>
-            <option value="3">Palette 3</option>
-            <option value="4">Palette 4</option>
-            <option value="5">Palette 5</option>
-          </select>
         </p>
-
+      </div>
+      <div class="fl-left" style="width: 45%; margin-right: 25px;">
+        <h3>Indirect Color</h3>
         <p>
-          <label>Select an Image</label>
-          <br>
-          <select id="image">
-            <option value="1">Cheep Cheep</option>
-            <option value="2">Mushroom</option>
-            <option value="3">Mario</option>
-          </select>
+          Indirect color means that the representation of a color is stored in an image's memory, and not the color value itself. If the color value itself was stored in memory, that would be <em>direct color.</em> Using indirect color gives the SNES capabilities to switch palettes fairly easily.
         </p>
+        <form>
+          <!-- to do: genereate options automatically -->
+          <p>
+            <label>Select a Color Palette</label>
+            <br>
+            <select id="palette">
+              <option value="1">Palette 1</option>
+              <option value="2">Palette 2</option>
+              <option value="3">Palette 3</option>
+              <option value="4">Palette 4</option>
+              <option value="5">Palette 5</option>
+            </select>
+          </p>
 
-        <!-- to do: implement direct color mode -->
-      </form>
+          <p>
+            <label>Select an Image</label>
+            <br>
+            <select id="image">
+              <option value="1">Cheep Cheep</option>
+              <option value="2">Mushroom</option>
+              <option value="3">Mario</option>
+            </select>
+          </p>
 
-    </div>
+          <!-- to do: implement direct color mode -->
+        </form>
 
-    <div class="clearfix">
+      </div>
 
+      <div class="clearfix">
+
+      </div>
     </div>
   </body>
 
