@@ -12,4 +12,4 @@
 * Vim - Text editor
 * Coolers.co - Palette generation
 
-A demo of the project can be found at <https://tonyweed.github.io/snes/>
+A demo of the project can be found at <https://devnoot.github.io/snes/>
